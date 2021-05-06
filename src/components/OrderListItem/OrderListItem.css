@@ -12,6 +12,13 @@
   font-size: 4vmin;
 }
 
+.OrderListItem div {
+  font-size: 2vmin;
+}
+#right {
+  text-align: right;
+}
+
 #selected {
   border: .1vmin solid rgb(246,127,0);
 }

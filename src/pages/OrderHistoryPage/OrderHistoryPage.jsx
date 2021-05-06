@@ -9,13 +9,15 @@ import OrderDetail from '../../components/OrderDetail/OrderDetail';
 
 export default function OrderHistoryPage({ user, setUser }) {
   const [orders, setOrders] = useState([]);
-  const [order, setOrder] = useState([]);
+
+  const [order, setOrder] = useState(null);
 
   useEffect(function() {
     async function getOrders() {
       const orders = await ordersAPI.getAll();
       setOrders(orders);
       setOrder(orders[0])
+      
     } 
     getOrders();
     
@@ -29,7 +31,7 @@ export default function OrderHistoryPage({ user, setUser }) {
         <Link to="/orders/new" className="button btn-sm">NEW ORDER</Link>
         <UserLogOut user={user} setUser={setUser} />
       </aside>
-        <OrderList orders={orders} />
+        <OrderList orders={orders} setOrder={setOrder}/>
         <OrderDetail order={order}/>
     </main>
   );

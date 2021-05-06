@@ -16,7 +16,9 @@ async function cart(req, res) {
 
 async function addToCart(req, res) {
   // Add the item to the cart
-
+  const cart = await Order.getCart(req.user._id);
+  await cart.addItemToCart(req.params.id);
+  res.json(cart);
 }
 
 // Updates an item in the cart's qty

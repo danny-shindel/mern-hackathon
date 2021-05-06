@@ -2,7 +2,7 @@ import './OrderDetail.css';
 import LineItem from '../LineItem/LineItem';
 
 // Used to display the details of any order, including the cart (unpaid order)
-export default function OrderDetail({ order }) {
+export default function OrderDetail({ order, handleChangeQty }) {
   // React will render nothing if a component returns null
   if (!order) return null;
 
@@ -10,6 +10,7 @@ export default function OrderDetail({ order }) {
     <LineItem
       lineItem={item}
       isPaid={order.isPaid}
+      handleChangeQty={handleChangeQty}
       key={item._id}
     />
   );

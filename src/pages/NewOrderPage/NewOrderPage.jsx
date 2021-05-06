@@ -41,6 +41,11 @@ export default function NewOrderPage({ user, setUser }) {
     setCart(updatedCart);
   }
 
+  async function handleChangeQty(itemId, newQty) {
+    const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty);
+    setCart(updatedCart);
+  }
+
   return (
     <main className="NewOrderPage">
       <aside>
@@ -57,7 +62,10 @@ export default function NewOrderPage({ user, setUser }) {
         menuItems={menuItems.filter(item => item.category.name === activeCat)}
         handleAddToOrder={handleAddToOrder}
       />
-      <OrderDetail order={cart} />
+      <OrderDetail
+        order={cart}
+        handleChangeQty={handleChangeQty}
+      />
     </main>
   );
 }

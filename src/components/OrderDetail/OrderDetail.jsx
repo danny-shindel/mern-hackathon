@@ -2,7 +2,7 @@ import './OrderDetail.css';
 import LineItem from '../LineItem/LineItem';
 
 // Used to display the details of any order, including the cart (unpaid order)
-export default function OrderDetail({ order, handleChangeQty }) {
+export default function OrderDetail({ order, handleChangeQty, handleCheckout }) {
   // React will render nothing if a component returns null
   if (!order) return null;
 
@@ -35,7 +35,7 @@ export default function OrderDetail({ order, handleChangeQty }) {
                 :
                 <button
                   className="btn-sm"
-                  onClick={() => alert('clicked')}
+                  onClick={handleCheckout}
                   disabled={!lineItems.length}
                 >CHECKOUT</button>
               }

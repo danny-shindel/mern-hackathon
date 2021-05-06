@@ -39,4 +39,16 @@ orderSchema.virtual('orderId').get(function() {
   return this.id.slice(-6).toUpperCase();
 });
 
+orderSchema.statics.getCart = function(userId) {
+  // 'this' is bound to the model
+  return this.findOneAndUpdate(
+    // query
+    { user: userId, isPaid: false },
+    // update - in the case that we are inserting
+    { user: userId },
+    // upsert option creates the doc if it doesn't exist
+    { upsert: true, new: true }
+  );
+};
+
 module.exports = mongoose.model('Order', orderSchema);

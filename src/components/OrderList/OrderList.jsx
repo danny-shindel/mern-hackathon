@@ -1,17 +1,16 @@
 import './OrderList.css';
 import OrderListItem from '../OrderListItem/OrderListItem';
 
-export default function OrderList() {
-  // const items = menuItems.map(item =>
-  //   <MenuListItem
-  //     key={item._id}
-  //     menuItem={item}
-  //     handleAddToOrder={handleAddToOrder}
-  //   />
-  // );
+export default function OrderList({ orders }) {
+  const items = orders.map(item =>
+    <OrderListItem
+      key={item._id}
+      order={item}
+    />
+  );
   return (
     <main className="OrderList">
-      
+      {items}
     </main>
   );
 }

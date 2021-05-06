@@ -38,6 +38,16 @@ async function checkout(req, res) {
 }
 
 async function getAll(req, res) {
-  const orders = await Order.find({user: req.user._id, isPaid: true}).exec();
+  // Add the item to the cart
+  const orders = await Order.getAll(req.user._id);
   res.json(orders);
 }
+
+// async function getAll(req, res) {
+//   const orders = await Order.find({user: req.user._id, isPaid: true}).exec();
+//   const test  = orders.map(order => {
+//     {...order, order.total = order.orderTotal}
+//   })
+//   console.log(test)
+//   res.json(orders);
+// }

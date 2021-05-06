@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link} from 'react-router-dom';
 import './OrderHistoryPage.css';
-import * as usersService from '../../utilities/users-service';
 import * as ordersAPI from '../../utilities/orders-api';
 import Logo from '../../components/Logo/Logo';
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
@@ -10,11 +9,13 @@ import OrderDetail from '../../components/OrderDetail/OrderDetail';
 
 export default function OrderHistoryPage({ user, setUser }) {
   const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState([]);
 
   useEffect(function() {
     async function getOrders() {
       const orders = await ordersAPI.getAll();
       setOrders(orders);
+      setOrder(orders[0])
     } 
     getOrders();
     
@@ -29,7 +30,7 @@ export default function OrderHistoryPage({ user, setUser }) {
         <UserLogOut user={user} setUser={setUser} />
       </aside>
         <OrderList orders={orders} />
-        <OrderDetail />
+        <OrderDetail order={order}/>
     </main>
   );
 }
